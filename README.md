@@ -1,5 +1,5 @@
 # Employee attrition Prediction Webapp
-IBM Hr attrition dataset is used.
+Pycaret employee attrition dataset is used.
 This use case takes HR data and uses machine learning models to predict which employees will be more likely to leave given some attributes
 
 
