@@ -47,6 +47,7 @@ def run():
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             data = pd.read_csv(file_upload)
+            data=data.applymap(lambda x: x.lower() if isinstance(x,str) else x)
             predictions = predict_model(estimator=model,data=data)
             st.write(predictions)
 def main():
