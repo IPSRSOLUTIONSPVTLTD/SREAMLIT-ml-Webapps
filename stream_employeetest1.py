@@ -4,31 +4,17 @@ from pycaret.classification import load_model, predict_model
 import streamlit as st
 import pandas as pd
 import numpy as np
+import gzip, pickle, pickletools
 # model = load_model('Final_model')
 
-import bz2
-import pickle
-import _pickle as cPickle
 
 
-# Pickle a file and then compress it into a file with extension 
-def compressed_pickle(title, data):
-  with bz2.BZ2File(title + '.pbz2','w') as f:
-    cPickle.dump(data, f)
-
-# Load any compressed pickle file
-def decompress_pickle(file):
-  data = bz2.BZ2File(file, 'rb')
-  data = cPickle.load(data)
-  return data
-
-# data="/content/Final_model.pkl"
-# compressed_pickle("empfinal",data)
+filepath = "Final_model_new.pkl"
+with gzip.open(filepath, 'rb') as f:
+    p = pickle.Unpickler(f)
+    model = p.load()
 
 
-model_data = decompress_pickle('empfinal.pbz2') 
-
-model = load_model(model_data)
 
 
 
